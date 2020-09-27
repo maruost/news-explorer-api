@@ -1,0 +1,27 @@
+{
+  "name": "news-explorer-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maruost/news-explorer-api.git"
+  },
+  "author": "Maria Ostapenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maruost/news-explorer-api/issues"
+  },
+  "homepage": "https://github.com/maruost/news-explorer-api#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "nodemon": "^2.0.4"
+  }
+}
