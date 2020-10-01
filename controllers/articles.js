@@ -9,7 +9,7 @@ module.exports.showAllArticles = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.createArticle = (req, res, next) => {
+module.exports.saveArticle = (req, res, next) => {
   const {
     keyword, title, text, date, source, link, image,
   } = req.body;
