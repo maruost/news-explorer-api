@@ -23,5 +23,15 @@
         "args": "none"
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "auth.js"
+      ],
+      "rules": {
+        "consistent-return": "off"
+      }
+    }
+  ]
 }
