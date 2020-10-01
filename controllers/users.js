@@ -8,8 +8,7 @@ const NotFoundError = require('../helpers/not-found-error');
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports.findUser = (req, res, next) => {
-  console.log(req.body);
-  User.findById(req.params.id)
+  User.findById(req.user._id)
     .orFail(() => {
       throw new NotFoundError('Нет пользователя с таким id');
     })

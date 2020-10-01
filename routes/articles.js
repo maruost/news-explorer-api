@@ -3,6 +3,6 @@ const { showAllArticles, deleteArticle, createArticle } = require('../controller
 
 cardsRouter.get('/', showAllArticles);
 cardsRouter.post('/', createArticle);
-cardsRouter.delete('/articleId', deleteArticle);
+cardsRouter.delete('/:articleId', deleteArticle);
 
 module.exports = cardsRouter;
