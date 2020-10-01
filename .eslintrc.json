@@ -16,6 +16,12 @@
           "id"
         ]
       }
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "args": "none"
+      }
     ]
   }
 }
