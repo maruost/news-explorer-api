@@ -4,8 +4,9 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors, celebrate, Joi } = require('celebrate');
 
-const auth = require('./middlewares/auth');
 
+const { requestLogger, errorLogger } = require('./middlewares/logger');
+const auth = require('./middlewares/auth');
 const users = require('./routes/users');
 const articles = require('./routes/articles');
 const { login, createUser } = require('./controllers/users');
@@ -24,6 +25,7 @@ mongoose.connect('mongodb://localhost:27017/newsdb', {
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(requestLogger);
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
@@ -42,6 +44,8 @@ app.post('/signup', celebrate({
 
 app.use('/users', auth, users);
 app.use('/articles', auth, articles);
+
+app.use(errorLogger);
 
 app.use((req, res) => {
   throw new NotFoundError('Запрашиваемый ресурс не найден');
