@@ -1,7 +1,7 @@
-/* eslint-disable no-underscore-dangle */
 const Article = require('../models/article');
 const NotFoundError = require('../helpers/not-found-error');
 const AuthErorr = require('../helpers/authorization-error');
+const { errMessages } = require('../data/messages');
 
 module.exports.showAllArticles = (req, res, next) => {
   Article.find({})
@@ -22,14 +22,13 @@ module.exports.saveArticle = (req, res, next) => {
 };
 
 module.exports.deleteArticle = (req, res, next) => {
-  console.log(req.params.articleId);
   Article.findById(req.params.articleId).select('+owner')
     .orFail(() => {
-      throw new NotFoundError('Запрашиваемой карточки не существует');
+      throw new NotFoundError(errMessages.card);
     })
     .then((article) => {
       if (!(String(article.owner) === req.user._id)) {
-        throw new AuthErorr('Недостаточно прав для совершения данного действия');
+        throw new AuthErorr(errMessages.access);
       }
       article.remove();
       return res.send({ data: article });

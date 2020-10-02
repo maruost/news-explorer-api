@@ -2,6 +2,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const { infoMessages } = require('../data/messages');
 const User = require('../models/user');
 const NotFoundError = require('../helpers/not-found-error');
 
@@ -55,7 +56,7 @@ module.exports.login = (req, res, next) => {
           httpOnly: true,
           sameSite: true,
         })
-        .send({ message: 'Авторизация прошла успешно' });
+        .send({ message: infoMessages.auth });
     })
     .catch(next);
 };
