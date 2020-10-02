@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { errMessages } = require('../data/messages');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
@@ -8,7 +9,7 @@ module.exports = (req, res, next) => {
   if (!token) {
     return res
       .status(401)
-      .send({ message: 'Необходима авторизация' });
+      .send({ message: errMessages.auth });
   }
 
   let payload;
@@ -18,7 +19,7 @@ module.exports = (req, res, next) => {
   } catch (err) {
     return res
       .status(401)
-      .send({ message: 'Необходима авторизация' });
+      .send({ message: errMessages.auth });
   }
   req.user = payload;
 
