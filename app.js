@@ -5,23 +5,26 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
+const helmet = require('helmet');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const limiter = require('./helpers/rate-limiter');
 const mainRouter = require('./routes/index');
 const { errMessages } = require('./data/messages');
 const NotFoundError = require('./helpers/not-found-error');
+const { mongoAdress } = require('./helpers/config');
 
 const { PORT = 3000, NODE_ENV, DATA_URI } = process.env;
 const app = express();
 
-mongoose.connect(NODE_ENV === 'production' ? DATA_URI : 'mongodb://localhost:27017/newsdb', {
+mongoose.connect(NODE_ENV === 'production' ? DATA_URI : mongoAdress, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
   useUnifiedTopology: true,
 });
 
+app.use(helmet());
 app.use(limiter);
 app.use(bodyParser.json());
 app.use(cookieParser());

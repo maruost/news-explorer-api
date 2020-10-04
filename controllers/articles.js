@@ -17,7 +17,18 @@ module.exports.saveArticle = (req, res, next) => {
   return Article.create({
     keyword, title, text, date, source, link, image, owner: req.user._id,
   })
-    .then((article) => res.status(201).send({ data: article }))
+    .then((article) => res.status(201).send({
+      data: {
+        _id: article._id,
+        keyword: article.keyword,
+        title: article.title,
+        text: article.text,
+        date: article.date,
+        source: article.source,
+        link: article.link,
+        image: article.image,
+      },
+    }))
     .catch(next);
 };
 
@@ -31,7 +42,18 @@ module.exports.deleteArticle = (req, res, next) => {
         throw new AuthErorr(errMessages.access);
       }
       article.remove();
-      return res.send({ data: article });
+      return res.send({
+        data: {
+          _id: article._id,
+          keyword: article.keyword,
+          title: article.title,
+          text: article.text,
+          date: article.date,
+          source: article.source,
+          link: article.link,
+          image: article.image,
+        },
+      });
     })
     .catch(next);
 };

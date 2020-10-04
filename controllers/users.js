@@ -1,8 +1,8 @@
-/* eslint-disable no-underscore-dangle */
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const { infoMessages } = require('../data/messages');
+const { jwtDev } = require('../helpers/config');
+const { infoMessages, errMessages } = require('../data/messages');
 const User = require('../models/user');
 const NotFoundError = require('../helpers/not-found-error');
 
@@ -11,7 +11,7 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 module.exports.findUser = (req, res, next) => {
   User.findById(req.user._id)
     .orFail(() => {
-      throw new NotFoundError('Нет пользователя с таким id');
+      throw new NotFoundError(errMessages.user);
     })
     .then((user) => res.send({ data: user }))
     .catch(next);
@@ -47,7 +47,7 @@ module.exports.login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+        NODE_ENV === 'production' ? JWT_SECRET : jwtDev,
         { expiresIn: '7d' },
       );
       return res

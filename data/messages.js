@@ -5,6 +5,7 @@ module.exports.errMessages = {
   auth: 'Необходима авторизация',
   card: 'Запрашиваемой карточки не существует',
   access: 'Недостаточно прав для совершения данного действия',
+  user: 'Нет пользователя с таким id',
 };
 
 module.exports.infoMessages = {
