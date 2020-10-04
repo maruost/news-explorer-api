@@ -42,7 +42,12 @@ app.use((req, res) => {
 app.use(errors());
 
 app.use((err, req, res, next) => {
-  const { statusCode = 500, message } = err;
+  let { statusCode = 500, message } = err;
+
+  if (err.name.includes('MongoError')) {
+    statusCode = 409;
+    message = errMessages.duplicate;
+  }
 
   res
     .status(statusCode)
