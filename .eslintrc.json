@@ -16,22 +16,6 @@
           "_id"
         ]
       }
-    ],
-    "no-unused-vars": [
-      "error",
-      {
-        "args": "none"
-      }
     ]
-  },
-  "overrides": [
-    {
-      "files": [
-        "auth.js"
-      ],
-      "rules": {
-        "consistent-return": "off"
-      }
-    }
-  ]
+  }
 }
