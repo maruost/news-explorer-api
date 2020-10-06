@@ -33,8 +33,6 @@ app.use(requestLogger);
 
 app.use('/', mainRouter);
 
-app.use(errorLogger);
-
 app.use((req, res) => {
   throw new NotFoundError(errMessages.resource);
 });
@@ -57,6 +55,8 @@ app.use((err, req, res, next) => {
         : message,
     });
 });
+
+app.use(errors());
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
