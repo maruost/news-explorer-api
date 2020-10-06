@@ -1,6 +1,7 @@
 const Article = require('../models/article');
 const NotFoundError = require('../helpers/not-found-error');
 const AuthErorr = require('../helpers/authorization-error');
+const ForbiddenError = require('../helpers/forbidden-error');
 const { errMessages } = require('../data/messages');
 
 module.exports.showAllArticles = (req, res, next) => {
@@ -39,7 +40,7 @@ module.exports.deleteArticle = (req, res, next) => {
     })
     .then((article) => {
       if (!(String(article.owner) === req.user._id)) {
-        throw new AuthErorr(errMessages.access);
+        throw new ForbiddenError(errMessages.access);
       }
       article.remove();
       return res.send({
