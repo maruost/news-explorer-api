@@ -9,7 +9,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 
 const { requestLogger, errorLogger } = require("./middlewares/logger");
-const { corsOptions } = require("./helpers/config");
+const { corsOptions } = require("./middlewares/cors");
 const limiter = require("./helpers/rate-limiter");
 const mainRouter = require("./routes/index");
 const { errMessages } = require("./data/messages");
@@ -26,7 +26,7 @@ mongoose.connect(NODE_ENV === "production" ? DATA_URI : mongoAdress, {
   useUnifiedTopology: true,
 });
 
-app.use(cors(corsOptions));
+app.use('*', cors(corsOptions));
 app.use(helmet());
 app.use(limiter);
 app.use(bodyParser.json());

@@ -5,16 +5,9 @@ module.exports.jwtDev = "dev-secret";
 module.exports.mongoAdress = "mongodb://localhost:27017/newsdb";
 
 //cors options configuration
-module.exports.corsOptions = {
-  origin: [
-    "http://localhost:8080",
-    "https://maruost.github.io/news-frontend/",
-    "https://www.api.my-news-explorer.gq",
-    "https://api.my-news-explorer.gq",
-  ],
-  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-  preflightContinue: false,
-  optionsSuccessStatus: 200,
-  allowedHeaders: ["Content-Type", "origin", "x-access-token"],
-  credentials: true,
-};
+module.exports.corsOrigins = [
+  "http://localhost:8080",
+  "https://maruost.github.io/news-frontend",
+  "https://www.my-news-explorer.gq",
+  "https://my-news-explorer.gq",
+];
