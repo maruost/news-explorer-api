@@ -9,6 +9,8 @@ module.exports.corsOptions = {
   origin: [
     "http://localhost:8080",
     "https://maruost.github.io/news-frontend/",
+    "https://www.api.my-news-explorer.gq",
+    "https://api.my-news-explorer.gq",
   ],
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   preflightContinue: false,
