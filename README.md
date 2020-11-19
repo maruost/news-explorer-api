@@ -1,7 +1,6 @@
 # News-explorer-api
 
 ## Бекэнд для приложения news-explorer - API, c помощью которого осуществляется аутентификации пользователей и сохранения статей. 
-## API расположен на домене: https://www.api.my-news-explorer.gq, https://api.my-news-explorer.gq
 
 ### Используемые технологии:
 #### - Node.js, express.js
